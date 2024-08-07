@@ -1,0 +1,160 @@
+﻿@model Trabajo1.Models.Usuario
+
+@{
+    ViewData["Title"] = "Crear";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #7da397; /* Fondo azul claro */
+    }
+
+    .register-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #7da397; /* Fondo azul claro */
+    }
+
+    .register-box {
+        background: #a1c7bb;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+    }
+
+        .register-box h2 {
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            color: #00796b; /* Verde oscuro */
+        }
+
+        .register-box p {
+            margin-bottom: 2rem;
+            color: #004d40; /* Verde más oscuro */
+            font-weight: 400;
+        }
+
+    .input-group {
+        margin-bottom: 1rem;
+        text-align: left;
+    }
+
+        .input-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #b2dfdb; /* Verde claro */
+            border-radius: 4px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+            .input-group input:focus {
+                border-color: #004d40; /* Verde oscuro */
+                outline: none;
+                box-shadow: 0 0 0 0.2rem rgba(0, 77, 64, 0.25);
+            }
+
+    .policy-text {
+        margin: 1.5rem 0;
+        font-size: 0.875rem;
+        color: #004d40; /* Verde más oscuro */
+    }
+
+        .policy-text a {
+            color: #00796b; /* Verde oscuro */
+            text-decoration: none;
+        }
+
+            .policy-text a:hover {
+                text-decoration: underline;
+            }
+
+    .btn-primary {
+        background-color: #004d40; /* Verde oscuro */
+        border: none;
+        padding: 0.75rem 1.5rem;
+        color: #ffffff;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 100%;
+    }
+
+        .btn-primary:hover {
+            background-color: #00332b; /* Verde más oscuro */
+        }
+
+    .back-to-list {
+        margin-top: 1.5rem;
+    }
+
+        .back-to-list a {
+            color: #004d40; /* Verde oscuro */
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+            .back-to-list a:hover {
+                text-decoration: underline;
+            }
+</style>
+
+<div class="register-container">
+    <div class="register-box">
+        <h2>Regístrate</h2>
+        <p>Forma parte de nuestra plataforma educativa AcademIQ</p>
+        <form asp-action="Crear" method="post">
+            <div class="input-group">
+                <input asp-for="Usuario1" class="form-control" placeholder="Usuario" required />
+                <span asp-validation-for="Usuario1" class="text-danger"></span>
+            </div>
+            <div class="input-group">
+                <input asp-for="Pass" class="form-control" type="password" placeholder="Contraseña" required />
+                <span asp-validation-for="Pass" class="text-danger"></span>
+            </div>
+            <div class="policy-text">
+                <p>
+                    Al registrarte, aceptas nuestras <a href="#">Condiciones</a>, nuestra
+                    <a href="#">Política de privacidad</a> y nuestra <a href="#">Política de cookies</a>.
+                </p>
+            </div>
+            <button type="submit" class="btn btn-primary">Registrarse</button>
+        </form>
+        <div class="back-to-list">
+            ¿Tienes una cuenta?<a href="@Url.Action("Index", "Autentication")"> Iniciar Sesión</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('registroForm').addEventListener('submit', function (e) {
+        var isValid = true;
+        var userName = document.querySelector('[name="UserName"]').value;
+        var pass = document.querySelector('[name="Pass"]').value;
+        var userNameRegex = /^[a-zA-Z0-9]*$/;
+        var passRegex = /^(?=.*[A-Z]).{8,}$/;
+
+        if (!userNameRegex.test(userName)) {
+            isValid = false;
+            alert('El nombre de usuario no puede contener caracteres especiales.');
+        }
+
+        if (!passRegex.test(pass)) {
+            isValid = false;
+            alert('La contraseña debe tener al menos 8 caracteres y contener al menos una letra mayúscula.');
+        }
+
+        if (!isValid) {
+            e.preventDefault();
+        }
+    });
+</script>

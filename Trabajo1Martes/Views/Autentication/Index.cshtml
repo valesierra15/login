@@ -1,0 +1,131 @@
+﻿@model Trabajo1.Models.Usuario
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #7da397; /* Fondo azul claro */
+    }
+
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #7da397; /* Fondo azul claro */
+    }
+
+    .login-box {
+        background: #a1c7bb;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+    }
+
+    .login-icon {
+        margin-bottom: 1.5rem;
+    }
+
+        .login-icon img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #00796b; /* Borde verde oscuro */
+        }
+
+    .login-box h2 {
+        margin-bottom: 1.5rem;
+        font-size: 2rem;
+        color: #00796b; /* Verde oscuro */
+    }
+
+    .input-group {
+        margin-bottom: 1rem;
+        text-align: left;
+    }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #004d40; /* Verde más oscuro */
+            font-weight: 500;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #b2dfdb; /* Verde claro */
+            border-radius: 4px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+            .input-group input:focus {
+                border-color: #004d40; /* Verde oscuro */
+                outline: none;
+                box-shadow: 0 0 0 0.2rem rgba(0, 77, 64, 0.25);
+            }
+
+    .btn-primary {
+        background-color: #004d40; /* Verde oscuro */
+        border: none;
+        padding: 0.75rem 1.5rem;
+        color: #ffffff;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 100%;
+    }
+
+        .btn-primary:hover {
+            background-color: #00332b; /* Verde más oscuro */
+        }
+
+    .actions {
+        margin-top: 1.5rem;
+    }
+
+        .actions a {
+            color: #004d40; /* Verde oscuro */
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+            .actions a:hover {
+                text-decoration: underline;
+            }
+</style>
+
+<div class="login-container">
+    <div class="login-box">
+        <div class="login-icon">
+            <img src="~/img/PY69.jpg" alt="User Icon" />
+        </div>
+        <h2>AcademIQ</h2>
+        <form asp-action="Index" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="input-group">
+                <label for="Usuario1"><i class="fas fa-user"></i> Usuario</label>
+                <input asp-for="Usuario1" class="form-control" required />
+            </div>
+            <div class="input-group">
+                <label for="Pass"><i class="fas fa-lock"></i> Contraseña</label>
+                <input asp-for="Pass" class="form-control" type="password" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+        </form><br />
+        <div class="actions">
+            ¿No tienes una cuenta? <a href="@Url.Action("Crear", "Autentication")"> Regístrate</a>
+        </div>
+    </div>
+</div>
